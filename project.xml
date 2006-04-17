@@ -3,7 +3,7 @@
 <project>
 	<pomVersion>3</pomVersion>
 	<extend>../../../master/project.xml</extend>
-	<name>sakai-user-api</name>
+	<name>sakai-presence-api</name>
 	<groupId>sakaiproject</groupId>
 	<id>sakai-presence-api</id>
 	<currentVersion>${sakai.version}</currentVersion>

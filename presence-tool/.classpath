@@ -14,5 +14,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/courier-util"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/event-api"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/courier-api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/velocity"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/authz-api"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -9,6 +9,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/presence-api"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/tool-api"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/user-api"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/privacy"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/privacy-api"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

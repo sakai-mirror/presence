@@ -308,7 +308,7 @@ public abstract class BasePresenceService implements PresenceService, PresenceUp
 			// bind a presence tracking object to the sakai session for auto-cleanup when logout or inactivity invalidates the sakai session
 			Session session = m_sessionManager.getCurrentSession();
 			ToolSession ts = session.getToolSession(SESSION_KEY);
-			Presence p = new Presence(curSession, locationId, timeout);
+			Presence p = new Presence(locationId, timeout);
 			ts.setAttribute(locationId, p);
 		}
 

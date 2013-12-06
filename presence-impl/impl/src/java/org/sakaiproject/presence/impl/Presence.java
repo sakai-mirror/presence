@@ -1,20 +1,18 @@
 package org.sakaiproject.presence.impl;
 
 import org.sakaiproject.component.cover.ComponentManager;
+import org.sakaiproject.event.api.UsageSession;
 import org.sakaiproject.presence.api.PresenceService;
 import org.sakaiproject.tool.api.SessionBindingEvent;
 import org.sakaiproject.tool.api.SessionBindingListener;
 
 import java.io.Serializable;
 
-/**
- * Created with IntelliJ IDEA.
- * User: jbush
- * Date: 11/21/13
- * Time: 10:24 PM
- * To change this template use File | Settings | File Templates.
- */
-public class Presence implements SessionBindingListener, Serializable
+/**********************************************************************************************************************************************************************************************************************************************************
+ * Presence
+ *********************************************************************************************************************************************************************************************************************************************************/
+
+public class Presence implements SessionBindingListener,  Serializable
 {
     transient protected PresenceService presenceService;
 
@@ -67,21 +65,21 @@ public class Presence implements SessionBindingListener, Serializable
 	{
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void valueUnbound(SessionBindingEvent evt)
-	{
-		if (m_active)
-		{
-            getPresenceService().removePresence(m_locationId);
-		}
-	}
+    /**
+   	 * {@inheritDoc}
+   	 */
+   	public void valueUnbound(SessionBindingEvent evt)
+   	{
+   		if (m_active)
+   		{
+               getPresenceService().removePresence(m_locationId);
+   		}
+   	}
 
-    public PresenceService getPresenceService() {
-        if (presenceService == null) {
-            presenceService = (PresenceService) ComponentManager.get(PresenceService.class);
-        }
-        return presenceService;
-    }
+       public PresenceService getPresenceService() {
+           if (presenceService == null) {
+               presenceService = (PresenceService) ComponentManager.get(PresenceService.class);
+           }
+           return presenceService;
+       }
 }

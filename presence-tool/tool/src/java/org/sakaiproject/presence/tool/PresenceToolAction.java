@@ -36,6 +36,8 @@ import org.sakaiproject.cheftool.api.Menu;
 import org.sakaiproject.cheftool.menu.MenuDivider;
 import org.sakaiproject.cheftool.menu.MenuEntry;
 import org.sakaiproject.cheftool.menu.MenuImpl;
+import org.sakaiproject.cluster.api.ClusterService;
+import org.sakaiproject.component.cover.ComponentManager;
 import org.sakaiproject.event.api.SessionState;
 import org.sakaiproject.event.api.UsageSession;
 import org.sakaiproject.event.cover.UsageSessionService;
@@ -66,6 +68,11 @@ public class PresenceToolAction extends VelocityPortletPaneledAction
 
 	protected static final String MODE_SERVERS = "servers";
 
+    protected ClusterService clusterService;
+
+    public PresenceToolAction() {
+        clusterService = (ClusterService) ComponentManager.get(ClusterService.class);
+    }
 	/**
 	 * Populate the state object, if needed.
 	 */
@@ -184,6 +191,9 @@ public class PresenceToolAction extends VelocityPortletPaneledAction
 			Collections.sort(serverList);
 			context.put("serverList", serverList);
 
+			Map<String, ClusterService.Status>status = clusterService.getServerStatus();
+			context.put("status", status);
+
 			int count = 0;
 			for (List<UsageSession> sessions : servers.values())
 			{
@@ -263,6 +273,15 @@ public class PresenceToolAction extends VelocityPortletPaneledAction
 		}
 
 	} // doAuto
+
+	public void doSwitch(RunData data, Context context)
+	{
+		// We look at the status in the request so that if someone else has changed the status
+		// of a node we don't switch it back.
+		String id = data.getParameters().getString("server_id");
+		String status = data.getParameters().getString("status");
+		clusterService.markClosing(id, !ClusterService.Status.CLOSING.toString().equals(status));
+	}
 
 	/**
 	 * The action for when the user want's an update

@@ -22,7 +22,7 @@
 					</h4>	
 				</td>
 				<td headers="Count">
-					$servers.get("$serverName").size()
+					$session.get("$serverName").size()
 				</td>
 				<td headers="Status">
 					$status.get($serverName)

@@ -183,19 +183,21 @@ public class PresenceToolAction extends VelocityPortletPaneledAction
 			template += ".servers-List";
 
 			// get the set of all servers with current presence
-			Map<String,List<UsageSession>> servers = UsageSessionService.getOpenSessionsByServer();
-			context.put("servers", servers);
-
-			List<String> serverList = new Vector<String>();
-			serverList.addAll(servers.keySet());
-			Collections.sort(serverList);
-			context.put("serverList", serverList);
+			Map<String,List<UsageSession>> session = UsageSessionService.getOpenSessionsByServer();
+			context.put("session", session);
 
 			Map<String, ClusterService.Status>status = clusterService.getServerStatus();
 			context.put("status", status);
 
+
+			List<String> serverList = new Vector<String>();
+			serverList.addAll(status.keySet());
+			serverList.addAll(session.keySet());
+			Collections.sort(serverList);
+			context.put("serverList", serverList);
+
 			int count = 0;
-			for (List<UsageSession> sessions : servers.values())
+			for (List<UsageSession> sessions : session.values())
 			{
 				count += sessions.size();
 			}
